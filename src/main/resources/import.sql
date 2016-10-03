@@ -1,10 +1,10 @@
 INSERT INTO AUTHOR (ID, NAME, EMAIL, REGISTRATION_DATE, PASSWORD_HASH) VALUES (1, 'Ivan Kirilyuk', 'ivankyrios@gmail.com', '2016-02-10', '$2a$10$/Gj7vz1s76lxRLHqMf3NIeLptzlKwnClYNQOBS2ZXxK0jCFg4ldt6');
 
-INSERT INTO BLOG_POST (ID, HTML_TEXT) VALUES (773, 'Post text');
-INSERT INTO BLOG_POST (ID, HTML_TEXT) VALUES (774, 'Post text');
-INSERT INTO BLOG_POST (ID, HTML_TEXT) VALUES (775, 'Post text');
-INSERT INTO BLOG_POST (ID, HTML_TEXT) VALUES (776, 'Post text');
-INSERT INTO BLOG_POST (ID, HTML_TEXT) VALUES (777, 'Post text');
+INSERT INTO BLOG_POST (ID, HTML_TEXT, IMAGE) VALUES (773, 'Post text', 'images/pic07.jpg');
+INSERT INTO BLOG_POST (ID, HTML_TEXT, IMAGE) VALUES (774, 'Post text', 'images/pic07.jpg');
+INSERT INTO BLOG_POST (ID, HTML_TEXT, IMAGE) VALUES (775, 'Post text', 'images/pic07.jpg');
+INSERT INTO BLOG_POST (ID, HTML_TEXT, IMAGE) VALUES (776, 'Post text', 'images/pic07.jpg');
+INSERT INTO BLOG_POST (ID, HTML_TEXT, IMAGE) VALUES (777, 'Post text', 'images/pic07.jpg');
 
 INSERT INTO BLOG_POST_HEADER (ID, HEADER, HEADER_IMAGE, HTML_SHORT_DESCRIPTION, PUBLISH_DATE, BP_ID) VALUES (222, 'Голавль в поводку весной.', 'images/pic04.jpg', '<p>Каждый год в первые дни мая я выбираюсь на речку с небезосновательным ожиданием поклевки приличного голавля. Приличной я считаю рыбу весом более 600 грамм. Естественно, на реке у  меня есть любимые, проверенные места. Самое результативное место –  несколько островков, расположенных посередине реки, рядом с которыми находятся замечательные протоки, небольшие заводи и отмели.</p>', '2016-02-10', 773);
 INSERT INTO BLOG_POST_HEADER (ID, HEADER, HEADER_IMAGE, HTML_SHORT_DESCRIPTION, PUBLISH_DATE, BP_ID) VALUES (223, 'Голавль в поводку весной.', 'images/pic04.jpg', '<p>Каждый год в первые дни мая я выбираюсь на речку с небезосновательным ожиданием поклевки приличного голавля. Приличной я считаю рыбу весом более 600 грамм. Естественно, на реке у  меня есть любимые, проверенные места. Самое результативное место –  несколько островков, расположенных посередине реки, рядом с которыми находятся замечательные протоки, небольшие заводи и отмели.</p>', '2016-02-10', 774);

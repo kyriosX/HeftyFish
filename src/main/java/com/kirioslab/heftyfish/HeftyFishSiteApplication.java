@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kirioslab.heftyfish.dto.BlogPostDto;
 import com.kirioslab.heftyfish.model.BlogPostHeader;
 import com.kirioslab.heftyfish.service.BlogPostService;
 import com.kirioslab.heftyfish.service.NoBlogPostFoundException;
@@ -40,5 +42,19 @@ public class HeftyFishSiteApplication {
 	ModelAndView login(ModelAndView mv) {
 		mv.setViewName("login");
 		return mv;
+	}
+	
+	@RequestMapping(value = "/createPost", method = RequestMethod.GET)
+	ModelAndView createPost(ModelAndView mv) {
+		mv.setViewName("writePost");
+		mv.addObject("latestPostList", blogPostService.getLatest5Posts());
+		mv.addObject("blogPostDto", new BlogPostDto());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/createPost", method = RequestMethod.POST)
+	ModelAndView createPost(@ModelAttribute BlogPostDto blogPost) {
+		blogPostService.create(blogPost);
+		return new ModelAndView("redirect:/");
 	}
 }

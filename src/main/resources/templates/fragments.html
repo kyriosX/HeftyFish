@@ -1,0 +1,135 @@
+<head th:fragment="head">
+		<title>Hefty Fish</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" /> 
+		<link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'/>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+</head>
+
+<!-- Header -->
+<div id="header" th:fragment="header">
+	<div class="container">
+
+		<!-- Logo -->
+		<div id="logo">
+			<h1>
+				<a href="#">Hefty Fish</a>
+			</h1>
+			<span>Сайт настоящих рыболовов</span>
+		</div>
+
+		<form type="hidden" th:action="@{/logout}" method="post" id="logoutForm">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		</form>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="/">Homepage</a></li>
+				<li sec:authorize="!isAuthenticated()" class="active"><a href="/login">Login</a></li>
+				<li sec:authorize="isAuthenticated()" class="active"><a href="/createPost">Write post</a></li>
+				<li sec:authorize="isAuthenticated()" class="active"><a onclick="document.getElementById('logoutForm').submit()">Logout</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+
+<!-- Sidebar -->
+<div id="sidebar" class="4u" th:fragment="sidebar">
+	<section>
+		<h2>Последние записи</h2>
+		<ul class="style">
+			<li th:each="lp : ${latestPostList}">
+				<p class="posted" th:text="${lp.getPublishDate()}"></p> <img th:src="@{${lp.getHeaderImage()}}" />
+				<p class="text" th:text="${lp.getHeader()}">Заголовок поста</p>
+				<p class="text" th:utext="${lp.getHtmlShortDescription()}">Заголовок поста</p>
+			</li>
+		</ul>
+	</section>
+</div>
+
+
+
+		<!-- Footer -->
+<!--		<div id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<h2>Aenean elementum facilisis</h2>
+						<a href="#" class="image full"><img src="images/pic01.jpg" alt="" /></a>
+						<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
+						<p><a href="#" class="button">More Details</a></p>
+					</div>
+					<div class="4u">
+						<h2>Fusce ultrices fringilla</h2>
+						<a href="#" class="image full"><img src="images/pic02.jpg" alt="" /></a>
+						<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
+						<p><a href="#" class="button">More Details</a></p>
+					</div>
+					<div class="4u">
+						<h2>Etiam rhoncus volutpat erat</h2>
+						<a href="#" class="image full"><img src="images/pic03.jpg" alt="" /></a>
+						<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum. Quisque dictum. Pellentesque viverra vulputate enim.</p>
+						<p><a href="#" class="button">More Details</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		Footer
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<section>
+							<h2>Latest Posts</h2>
+							<ul class="default">
+								<li><a href="#">Pellentesque lectus gravida blandit</a></li>
+								<li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+								<li><a href="#">Phasellus nibh pellentesque congue</a></li>
+								<li><a href="#">Cras vitae metus aliquam pharetra</a></li>
+								<li><a href="#">Maecenas vitae orci feugiat eleifend</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="4u">
+						<section>
+							<h2>Ultrices fringilla</h2>
+							<ul class="default">
+								<li><a href="#">Pellentesque lectus gravida blandit</a></li>
+								<li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+								<li><a href="#">Phasellus nibh pellentesque congue</a></li>
+								<li><a href="#">Cras vitae metus aliquam pharetra</a></li>
+								<li><a href="#">Maecenas vitae orci feugiat eleifend</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="4u">
+						<section>
+							<h2>Aenean elementum</h2>
+							<ul class="default">
+								<li><a href="#">Pellentesque lectus gravida blandit</a></li>
+								<li><a href="#">Lorem ipsum consectetuer adipiscing</a></li>
+								<li><a href="#">Phasellus nibh pellentesque congue</a></li>
+								<li><a href="#">Cras vitae metus aliquam pharetra</a></li>
+								<li><a href="#">Maecenas vitae orci feugiat eleifend</a></li>
+							</ul>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div> -->

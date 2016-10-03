@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="com.kirioslab.heftyfish.jpa" v="2.5.9" sm="false" xs="false" id="_14749134666191" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" compositePrimaryKeyClass="BlogPostPK" abs="false" class="BlogPost" visibile="true" minimized="false" rootElement="_14749134666191" id="_1474913532668">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="htmlText" id="_14753153492768">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="200" ma="20000" m="Blog post shoul be 200 to 20000 character lenght."/>
+                </jpa:bv>
+                <jpa:column name="HTML_TEXT" unique="false" nullable="true" insertable="true" updatable="true" length="20000" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="image" id="_14755135800738">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-one orp="false" optional="true" primaryKey="false" connected-entity-id="_1475315604635" connected-attribute-id="_147531686104123" fetch="EAGER" visibile="true" name="blogPostHeader" id="_147531686104324">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14749135327172">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="BlogPost.findAll">
+            <jpa:query>Select e from BlogPost e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPost.findByPublishDate">
+            <jpa:query>Select b from BlogPost b where b.publishDate=:publishDate</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPost.findByHtmlText">
+            <jpa:query>Select b from BlogPost b where b.htmlText=:htmlText</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPost.findByHeader">
+            <jpa:query>Select b from BlogPost b where b.header=:header</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPost.findByImage">
+            <jpa:query>Select b from BlogPost b where b.image=:image</jpa:query>
+        </jpa:nq>
+        <jpa:table name="BLOG_POST"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="AuthorPK" abs="false" class="Author" visibile="true" minimized="false" rootElement="_14749134666191" id="_1474913565324">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_14753152464244">
+                <jpa:bv>
+                    <jpa:nn m="Author name is undefined."/>
+                    <jpa:si mi="4" ma="64" m="Author name lenght shoul be 4 to 64 characters."/>
+                </jpa:bv>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="email" id="_14753152661385">
+                <jpa:bv>
+                    <jpa:nn m="Author email cannot be undefined."/>
+                    <jpa:pt r="(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|&quot;(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot;)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])" m="Email is not valid."/>
+                </jpa:bv>
+                <jpa:column unique="true" nullable="true" insertable="true" updatable="true" length="255" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.sql.Timestamp" visibile="true" name="registrationDate" id="_14753152874176">
+                <jpa:bv/>
+                <jpa:column name="REGISTRATION_DATE" unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="passwordHash" id="_147532070492593">
+                <jpa:bv>
+                    <jpa:nu m="User password cannot be empty."/>
+                </jpa:bv>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" connected-entity-id="_1475315604635" fetch="LAZY" visibile="true" name="blogPostHeaders" id="_147531590144821">
+                <jpa:join-table>
+                    <jpa:join-column name="AUTHOR_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                    <jpa:inverse-join-column name="BP_HEADERS_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                </jpa:join-table>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14749135653254">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Author.findAll">
+            <jpa:query>Select e from Author e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Author.findByName">
+            <jpa:query>Select a from Author a where a.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Author.findByEmail">
+            <jpa:query>Select a from Author a where a.email=:email</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Author.findByRegistrationDate">
+            <jpa:query>Select a from Author a where a.registrationDate=:registrationDate</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Author.findByPasswordHash">
+            <jpa:query>Select a from Author a where a.passwordHash=:passwordHash</jpa:query>
+        </jpa:nq>
+        <jpa:table>
+            <jpa:index n="EMAIL_INDEX" u="true">
+                <jpa:c c="EMAIL"/>
+            </jpa:index>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="BlogPostTagPK" abs="false" class="BlogPostTag" visibile="true" minimized="false" rootElement="_14749134666191" id="_1475315479465">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_147531557349713">
+                <jpa:bv>
+                    <jpa:nn m="Blog post tag is undefined."/>
+                    <jpa:si mi="3" ma="32"/>
+                </jpa:bv>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_147531547946610">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="BlogPostTag.findAll">
+            <jpa:query>Select e from BlogPostTag e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPostTag.findByName">
+            <jpa:query>Select b from BlogPostTag b where b.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:table name="BLOG_POST_TAG"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="BlogPostHeaderPK" abs="false" class="BlogPostHeader" visibile="true" minimized="false" rootElement="_14749134666191" id="_1475315604635">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="header" id="_147531562317516">
+                <jpa:bv>
+                    <jpa:nn m="Blog post header is not defined."/>
+                    <jpa:si mi="10" ma="255" m="Blog post header must be 10-255 lenght."/>
+                </jpa:bv>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="htmlShortDescription" id="_147531575975119">
+                <jpa:bv>
+                    <jpa:nn m="Blog post description is not defined."/>
+                    <jpa:si mi="25" ma="900" m="Blog post description should be 25 to 900 characters lenght."/>
+                </jpa:bv>
+                <jpa:column name="HTML_SHORT_DESCRIPTION" unique="false" nullable="true" insertable="true" updatable="true" length="900" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.sql.Timestamp" visibile="true" name="publishDate" id="_147531581773220">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="PUBLISH_DATE" unique="false" nullable="true" insertable="true" updatable="true" length="255" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="headerImage" id="_147535106623243">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" connected-entity-id="_1475315479465" fetch="LAZY" visibile="true" name="blogPostTags" id="_147531592098422">
+                <jpa:join-table name="HEADER_TAG">
+                    <jpa:join-column name="BLOG_POST_HEADER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                    <jpa:inverse-join-column name="BLOG_POST_TAGS_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                </jpa:join-table>
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1474913532668" connected-attribute-id="_147531686104324" fetch="LAZY" visibile="true" name="blogPost" id="_147531686104123">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+                <jpa:join-column name="BP_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_147531560463614">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="BlogPostHeader.findAll">
+            <jpa:query>Select e from BlogPostHeader e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPostHeader.findByHeader">
+            <jpa:query>Select b from BlogPostHeader b where b.header=:header</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPostHeader.findByHtmlShortDescription">
+            <jpa:query>Select b from BlogPostHeader b where b.htmlShortDescription=:htmlShortDescription</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPostHeader.findByPublishDate">
+            <jpa:query>Select b from BlogPostHeader b where b.publishDate=:publishDate</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="BlogPostHeader.findByHeaderImage">
+            <jpa:query>Select b from BlogPostHeader b where b.headerImage=:headerImage</jpa:query>
+        </jpa:nq>
+        <jpa:table name="BLOG_POST_HEADER">
+            <jpa:index n="BP_HEADER_INDEX" u="false">
+                <jpa:c c="HEADER"/>
+            </jpa:index>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:snp e="true" loc="BEFORE_PACKAGE">/**
+ * This file was generated by the JPA Modeler
+ */</jpa:snp>
+    <jpa:c>
+        <ct>java.util.List</ct>
+        <ct>java.util.Set</ct>
+        <ct>java.util.Map</ct>
+        <ct>java.util.Collection</ct>
+    </jpa:c>
+    <jpa:diagram>
+        <plane elementRef="_14749134666191">
+            <shape elementRef="_1474913532668">
+                <Bounds x="315.0" y="333.0" width="159.0" height="138.0"/>
+            </shape>
+            <shape elementRef="_1474913565324">
+                <Bounds x="39.0" y="85.0" width="165.0" height="178.0"/>
+            </shape>
+            <shape elementRef="_1475315479465">
+                <Bounds x="582.0" y="111.0" width="185.0" height="86.0"/>
+            </shape>
+            <shape elementRef="_1475315604635">
+                <Bounds x="302.0" y="65.0" width="211.0" height="198.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

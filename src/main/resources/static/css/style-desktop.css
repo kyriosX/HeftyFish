@@ -95,7 +95,7 @@
 			#nav > ul > li > span
 			{
 				display: block;
-				padding: 1em 1.5em;
+				padding: 3px 9px;
 				letter-spacing: 1px;
 				text-decoration: none;
 				text-transform: uppercase;
@@ -103,12 +103,13 @@
 				font-size: 1em;
 				outline: 0;
 				color: rgba(255,255,255,.7);
+				cursor: default;
 			}
 
 
 			#nav > ul > li > a:hover
 			{
-				color: #FFF;
+				color: #efeab6;
 			}
 
 			#nav li.active a
@@ -132,7 +133,7 @@
 
 	#main
 	{
-		padding: 6em 0em 4em 0em;
+		padding: 2em 0em 4em 0em;
 	}
 	
 	#content

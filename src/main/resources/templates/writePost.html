@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+<head th:replace="fragments :: head"></head>
+
+<body>
+	<div th:replace="fragments :: header">Header.</div> 
+
+	<!-- Main -->
+	<div id="main">
+		<div class="container">
+			<div class="row"> 
+
+				<!-- Content -->
+				<div id="content" class="8u skel-cell-important"> 
+					<form action="#" th:action="@{/createPost}" th:object="${blogPostDto}" method="post">
+					
+					<label th:for="${#ids.next('blogPostHeader')}">Заголовок поста</label>
+					<input type="text" th:field="*{blogPostHeader}" />
+					
+					<label th:for="${#ids.next('htmlShortDescription')}">Короткое описание</label>
+					<input type="text" th:field="*{htmlShortDescription}" />
+					
+					<label th:for="${#ids.next('blogPostHeaderImage')}">Картинка к короткому описанию</label>
+					<input type="text" th:field="*{blogPostHeaderImage}" />
+					
+					<label th:for="${#ids.next('blogPostImage')}">Главная картинка поста</label>
+					<input type="text" th:field="*{blogPostImage}" />
+					
+					<label th:for="${#ids.next('blogPostText')}">Текст поста</label>
+					<textarea th:field="*{blogPostText}" />			
+						
+					<p><input type="submit" value="Submit" /></p>
+					</form>
+				</div>
+				
+					
+				<div th:replace="fragments :: sidebar">
+ 					Sidebar.
+				</div> 
+									
+			</div>
+		</div>
+	</div>
+		
+	<!-- Copyright -->
+	<div id="copyright">
+		<div class="container">
+			2016
+		</div>
+	</div>
+		
+	</body>
+</html>
